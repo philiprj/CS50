@@ -12,3 +12,5 @@ This section lists the major frameworks/libraries used to in the project.
 * [SQL](https://www.w3schools.com/sql/)
 * [Django](https://www.djangoproject.com/)
 * [JavaScript](https://www.javascript.com/)
+
+## Project 0: Search (HTML & CSS)
