@@ -9,13 +9,17 @@
         <div id="page-button">
             <a class="btn btn-light" href="index.html" role="button">Google Search</a>
         </div>
-        <form id="search-box" action="https://google.com/search">
-            <img id="logo" src="images/googlelogo.svg" alt="Google Logo">
-            <br/> <br/>
-            <input id="search-input" type="text" name="q" placeholder="Search Google or type a URL">
-            <br/> <br/>
-            <input hidden="true" name="tbm" value="isch">
-            <input type="submit" value="Image Search"/>
-        </form>
+        <div id='centered' class="row">
+            <div class="col"></div>
+            <div class="col-5">
+                <form id="search-box" action="https://google.com/search">
+                    <img id="logo" src="images/googlelogo.svg" alt="Google Logo">
+                    <input id="search-input" class="form-control" type="text" name="q" placeholder="Search Google or type a URL">
+                    <input hidden="true" name="tbm" value="isch">
+                    <input class="btn btn-primary" type="submit" value="Image Search"/>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
     </body>
 </html>

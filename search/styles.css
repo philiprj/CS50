@@ -1,7 +1,8 @@
 #search-box {
+    position: absolute;
+    top: 40%;
+    width: 100%;
     text-align: center;
-    margin-top: 25%;
-    position: relative;
 }
 
 #logo {
@@ -11,11 +12,17 @@
 
 #search-input {
     height: 100%;
-    position: relative;
-    width: 25%;
+    /* position: r; */
+    width: 100%;
+    margin: 10px;
 }
 
 #page-button {
     position: relative;
     text-align: right;
+}
+
+.row {
+    position: relative;
+    top: 200px;
 }

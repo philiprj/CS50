@@ -10,12 +10,17 @@
             <a class="btn btn-light" href="image.html" role="button">Image Search</a>
             <a class="btn btn-light" href="advanced.html" role="button">Advanced Search</a>
         </div>
-        <form id="search-box" action="https://google.com/search">
-            <img id="logo" src="images/googlelogo.svg" alt="Google Logo">
-            <br/> <br/>
-            <input id="search-input" type="text" name="q" placeholder="Search Google or type a URL">
-            <br/> <br/>
-            <input type="submit" value="Google Search">
-        </form>
+        <div id='centered' class="row">
+            <div class="col"></div>
+            <div class="col-5">
+                <form id="search-box" action="https://google.com/search">
+                    <img id="logo" src="images/googlelogo.svg" alt="Google Logo">
+                    <input id="search-input" class="form-control" type="text" name="q" placeholder="Search Google or type a URL">
+                    <input class="btn btn-primary" type="submit" value="Google Search">
+                    <input class="btn btn-primary" name="btnI" type="submit" value="I'm Feeling Lucky">
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
     </body>
 </html>

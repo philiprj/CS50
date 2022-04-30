@@ -9,21 +9,19 @@
         <div id="page-button">
             <a class="btn btn-light" href="index.html" role="button">Google Search</a>
         </div>
-        <form id="search-box" action="https://google.com/search">
-            <img id="logo" src="images/googlelogo.svg" alt="Google Logo">
-            <br/> <br/>
-            <input id="search-input" type="text" name="q" placeholder="Search Google or type a URL">
-            <br/> <br/>
-            <input type="submit" value="Google Search">
-        </form>
+        <div id='centered' class="row">
+            <div class="col"></div>
+            <div class="col-5">
+                <form id="search-box" action="https://google.com/search">
+                    <img id="logo" src="images/googlelogo.svg" alt="Google Logo">
+                    <input id="search-input" class="form-control" type="text" name="as_q" placeholder="All these words">
+                    <input id="search-input" class="form-control" type="text" name="as_epq" placeholder="This exact word or phrase">
+                    <input id="search-input" class="form-control" type="text" name="as_oq" placeholder="Any of these words">
+                    <input id="search-input" class="form-control" type="text" name="as_eq" placeholder="None of these words">
+                    <input class="btn btn-primary" type="submit" value="Advanced Search">
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
     </body>
 </html>
-
-
-https://www.google.com/search?
-    sxsrf=ALiCzsZxf2P4XXIbedC-KcHptY8cblkG5w:1651252546858
-    &
-    tbm=isch
-    &
-    dpr=1
-https://www.google.com/search?
