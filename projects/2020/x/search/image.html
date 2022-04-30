@@ -12,9 +12,9 @@
         <div id='centered' class="row">
             <div class="col"></div>
             <div class="col-5">
-                <form id="search-box" action="https://google.com/search">
+                <form id="search-box" action="https://google.com/search" method="GET" role="search">
                     <img id="logo" src="images/googlelogo.svg" alt="Google Logo">
-                    <input id="search-input" class="form-control" type="text" name="q" placeholder="Search Google or type a URL">
+                    <input id="search-input" class="form-control" type="text" name="q" placeholder="Search Google or type a URL" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
                     <input hidden="true" name="tbm" value="isch">
                     <input class="btn btn-primary" type="submit" value="Image Search"/>
                 </form>
