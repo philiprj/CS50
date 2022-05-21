@@ -1,0 +1,5 @@
+.DS_Store
+encyclopedia/__pycache__/
+encyclopedia/migrations/__pycache__/
+wiki/__pycache__/
+db.sqlite3
