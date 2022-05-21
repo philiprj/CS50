@@ -4,6 +4,7 @@ from django import forms
 from markdown2 import Markdown
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from random import choice
 
 from . import util
 
@@ -58,7 +59,8 @@ def search(request):
 
 
 def random(request):
-    pass
+    entry = choice(util.list_entries())
+    return HttpResponseRedirect(reverse("entry", kwargs={"entry": entry}))
 
 
 def create(request):
