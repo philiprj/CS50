@@ -1,7 +1,24 @@
+from email import contentmanager
 from django.shortcuts import render
+from django import forms
 from markdown2 import Markdown
+from django.http import HttpResponseRedirect
 
 from . import util
+
+
+class NewEntryForm(forms.Form):
+    title = forms.CharField(
+        label="Entry Name",
+        widget=forms.TextInput(attrs={"class": "form-control col-md-8 col-lg-8"}),
+    )
+    contents = forms.CharField(
+        label="Contents",
+        widget=forms.Textarea(
+            attrs={"class": "form-control col-md-8 col-lg-8", "rows": 10}
+        ),
+    )
+    edit = forms.BooleanField(initial=False, widget=forms.HiddenInput(), required=False)
 
 
 def index(request):
@@ -37,3 +54,37 @@ def search(request):
             if input.lower() in entry.lower():
                 search_results.append(entry)
         return render(request, "encyclopedia/search.html", {"entries": search_results})
+
+
+def random(request):
+    pass
+
+
+def create(request):
+    if request.method == "POST":
+        form = NewEntryForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            contents = form.cleaned_data["contents"]
+            if (
+                util.get_entry(title) is None or form.cleaned_data["edit"] is True
+            ):  # Check for existing entry
+                util.save_entry(title, contents)
+                markdowner = Markdown()
+                return HttpResponseRedirect(reverse("entry", kwargs={"entry": title}))
+            else:
+                return render(
+                    request,
+                    "encyclopedia/create.html",
+                    {"form": form, "existing": True, "entry": title},
+                )
+        else:
+            return render(
+                request, "encyclopedia/create.html", {"form": form, "existing": False}
+            )
+    else:
+        return render(
+            request,
+            "encyclopedia/create.html",
+            {"form": NewEntryForm(), "existing": False},
+        )
