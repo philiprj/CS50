@@ -14,3 +14,10 @@ This section lists the major frameworks/libraries used to in the project.
 * [JavaScript](https://www.javascript.com/)
 
 ## Project 0: Search (HTML & CSS)
+
+Developing a Google clone using HTML and CSS, with Bootsrap CSS components.
+
+## Project 1: Wiki (Python & Django)
+
+Developing a interactive Wiki encyclopedia, using python with Django framework.
+
