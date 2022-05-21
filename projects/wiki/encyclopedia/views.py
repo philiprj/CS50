@@ -1,8 +1,9 @@
-from email import contentmanager
+from email import contentmanager, utils
 from django.shortcuts import render
 from django import forms
 from markdown2 import Markdown
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from . import util
 
@@ -88,3 +89,20 @@ def create(request):
             "encyclopedia/create.html",
             {"form": NewEntryForm(), "existing": False},
         )
+
+
+def edit(request, entry):
+    page = util.get_entry(entry)
+    if page is not None:
+        form = NewEntryForm()
+        form.fields["title"].initial = entry
+        form.fields["title"].widget = forms.HiddenInput()
+        form.fields["contents"].initial = page
+        form.fields["edit"].initial = True
+        return render(
+            request,
+            "encyclopedia/create.html",
+            {"form": form, "edit": True, "entry_name": entry},
+        )
+    else:
+        return render(request, "encyclopedia/error.html", {"entry_name": entry})
