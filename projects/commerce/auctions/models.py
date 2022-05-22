@@ -26,8 +26,8 @@ class Listing(models.Model):
     )
     active = models.BooleanField(default=True)
     # Bid details
-    initial_bid = models.DecimalField(max_digits=2)
-    current_bid = models.DecimalField(max_digits=2, blank=True, null=True)
+    initial_bid = models.FloatField()
+    current_bid = models.FloatField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     # User details
     creator = models.ForeignKey(
@@ -42,7 +42,7 @@ class Listing(models.Model):
 
 class Bid(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    bid_price = models.DecimalField(max_digits=2)
+    bid_price = models.FloatField()
     bidder = models.ForeignKey(User, on_delete=models.CASCADE)
     bid_time = models.DateTimeField(auto_now=True)
 
