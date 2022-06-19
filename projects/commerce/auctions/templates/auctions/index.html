@@ -1,7 +1,62 @@
 {% extends "auctions/layout.html" %}
 
-{% block body %}
-    <h2>Active Listings</h2>
+{% block title%}{{ page_title }}{% endblock %}
 
-    TODO
+{% block body %}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Categories</a>
+        </li>
+    {% for category in categories %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'activeListings'%}?category={{category.id}}">{{ category.category|upper }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <hr>
+    <!-- Show each listing  -->
+    <div class="container">        
+        <div class="row">
+            <!-- Loop through listings -->
+            {% for listing in listings %}
+                <div class="card border-light col col-lg-4 col-md-6 col-sm-6 col-12">  
+                    <!-- Get the listing id -->
+                    <a href="{% url 'listing' listing.id %}" class="card-link">
+                    <!-- Picture of listing, or default if no picture on file. -->
+                    <img src="{{ listing.mainPicture.picture.url|default:"https://www.inbounder.com.br/wp-content/themes/inbounder/images/no-image/No-Image-Found-400x264.png" }}"
+                        class="card-img-top" alt="{{ listing.mainPicture.alt_text|default:"No image found." }}">
+                    </a>
+                    <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item card-title"><h5> {{ listing.name }}</h5></li>
+                        <li class="list-group-item card-text"><p>{{ listing.description }}</p></li>
+                        <li class="list-group-item">$ 
+                            {%if listing.current_bid %} 
+                                {{ listing.current_bid }}
+                            {% else %}  
+                                {{ listing.initial_bid }}
+                            {% endif %}
+                        </li>
+                    </ul>
+                    </div>
+                    <div class="card-body">
+                    <a href="{% url 'listing' listing.id %}" class="card-link">Bid!</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'change_watchlist' listing.id 'activeListings' %}" class="card-link">
+                    {% else %}
+                        <a href="{% url 'login' %}" class="card-link">
+                    {% endif %}
+                        <!-- Is watched defined in views? -->
+                        {% if listing.is_watched %}
+                            Remove from my watchlist
+                        {% else %}
+                            Add to my watchlist
+                        {% endif %}
+                    </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

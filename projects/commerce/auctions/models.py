@@ -43,14 +43,27 @@ class Listing(models.Model):
 class Bid(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
     bid_price = models.FloatField()
-    bidder = models.ForeignKey(User, on_delete=models.CASCADE)
+    # bidder = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     bid_time = models.DateTimeField(auto_now=True)
 
 
 class Comment(models.Model):
-    commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    # commenter = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     listing = models.ForeignKey(
         Listing, on_delete=models.CASCADE, related_name="comments"
     )
     comment_time = models.DateTimeField(auto_now=True)
     comment = models.CharField(max_length=256)
+
+    def get_creation_date(self):
+        return self.comment_time.strftime("%B %d %Y")
+
+
+class Picture(models.Model):
+    listing = models.ForeignKey(
+        Listing, on_delete=models.CASCADE, related_name="get_pictures"
+    )
+    picture = models.ImageField(upload_to="images/")
+    alt_text = models.CharField(max_length=140)

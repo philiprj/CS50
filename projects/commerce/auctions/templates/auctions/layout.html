@@ -24,7 +24,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
+                <!-- Added new listing tab and watchlist for signed in user-->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'newListing' %}">New Listing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'watchlist' %}">My watchlist</a>
+                </li>
             {% else %}
+                <!-- If not logged in then offer option to login or register -->
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Log In</a>
                 </li>
